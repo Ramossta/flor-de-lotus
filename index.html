@@ -3,84 +3,98 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Feliz Aniversário</title>
+<title>Flor-de-lótus</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300&display=swap">
 <style>
 :root{
   --sky-top:#fde7ea; --sky-bot:#f7efe6; --water:#a9cfcf; --pad:#5a9470;
-  --ink:#43243a; --glow:#ffc4da; --ring:#2d6a6a; --btn-bg:rgba(255,255,255,.55);
+  --ink:#43243a; --glow:#ffc4da; --ring:#2d6a6a; --btn-bg:rgba(255,255,255,.55); --track:rgba(67,36,58,.3);
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --sky-top:#0a1024; --sky-bot:#1d2c52; --water:#0c2236; --pad:#1f5a45;
-    --ink:#f6e6ee; --glow:#ff9cc4; --ring:#7fc4d6; --btn-bg:rgba(255,255,255,.08);
+    --ink:#f6e6ee; --glow:#ff9cc4; --ring:#7fc4d6; --btn-bg:rgba(255,255,255,.08); --track:rgba(255,255,255,.3);
   }
 }
 :root[data-theme="dark"]{
   --sky-top:#0a1024; --sky-bot:#1d2c52; --water:#0c2236; --pad:#1f5a45;
-  --ink:#f6e6ee; --glow:#ff9cc4; --ring:#7fc4d6; --btn-bg:rgba(255,255,255,.08);
+  --ink:#f6e6ee; --glow:#ff9cc4; --ring:#7fc4d6; --btn-bg:rgba(255,255,255,.08); --track:rgba(255,255,255,.3);
 }
+*{-webkit-tap-highlight-color:transparent}
 html{height:100%; scroll-padding-top:env(safe-area-inset-top,0px)}
+@supports (height:100dvh){html{height:100dvh}}
 body{
   margin:0; min-height:100%; overflow-x:hidden; display:flex; flex-direction:column; align-items:center;
-  background:linear-gradient(var(--sky-top),var(--sky-bot)); color:var(--ink);
+  background:linear-gradient(var(--sky-top),var(--sky-bot) 70%); color:var(--ink);
   font-family:"Fraunces",Georgia,serif;
-} 
-header{padding:28px 20px 0; text-align:center}
-h1{margin:0; font-style:italic; font-weight:300; font-size:clamp(2rem,6vw,3rem); letter-spacing:.01em}
-header p{margin:6px 0 0; font-size:1rem; opacity:.75}
-.stage{width:min(100%,600px); flex:none; margin-top:auto}
-svg{display:block; width:100%; height:auto; overflow:visible; cursor:pointer}
-footer{flex:1; width:100%; background:var(--water); display:flex; justify-content:center; padding:8px 20px 28px}
-.controls{display:flex; align-items:center; gap:16px; flex-wrap:wrap; justify-content:center; height:max-content}
+}
+main{flex:1; width:100%; display:flex; flex-direction:column; align-items:center}
+header{position:relative; z-index:1; padding:26px 20px 0; text-align:center}
+h1{margin:0; font-style:italic; font-weight:300; font-size:clamp(2.2rem,10vw,3.4rem); line-height:1.2}
+.msg{margin:12px auto 0; max-width:32ch; text-align:center; text-wrap:balance; font-style:italic; font-weight:300; font-size:clamp(1.1rem,4.6vw,1.4rem); line-height:1.5}
+.love{display:block; margin-top:.7em; font-size:1.25em}
+.stage{width:min(100%,560px); width:min(100%,640px,max(300px,calc((100dvh - 350px)*1.21))); margin-top:auto}
+svg{display:block; width:100%; height:auto; overflow:visible; cursor:pointer; touch-action:manipulation; -webkit-user-select:none; user-select:none}
+footer{width:100%; background:var(--water); display:flex; flex-direction:column; align-items:center; gap:16px; padding:6px 20px 26px}
+
+.controls{display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:center}
 button{
   font:inherit; color:var(--ink); background:var(--btn-bg); border:1px solid currentColor;
-  border-radius:999px; padding:9px 22px; cursor:pointer; min-width:9.5rem;
+  border-radius:999px; padding:0 24px; min-height:48px; min-width:10rem; cursor:pointer; touch-action:manipulation;
 }
 button:hover{background:var(--glow); color:#43243a}
-input[type=range]{width:min(52vw,220px); accent-color:#d6336c}
+input[type=range]{-webkit-appearance:none; appearance:none; width:min(58vw,240px); height:44px; background:transparent; margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:4px; border-radius:2px; background:var(--track)}
+input[type=range]::-moz-range-track{height:4px; border-radius:2px; background:var(--track)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:28px; height:28px; margin-top:-12px; border-radius:50%; background:#e0457f; border:3px solid #fff}
+input[type=range]::-moz-range-thumb{width:22px; height:22px; border-radius:50%; background:#e0457f; border:3px solid #fff}
 button:focus-visible,input:focus-visible,svg:focus-visible{outline:3px solid var(--ring); outline-offset:3px}
 .ripple{fill:none; stroke:var(--ring); stroke-width:1.4; vector-effect:non-scaling-stroke; opacity:0;
-  transform-box:fill-box; transform-origin:center; animation:ripple 6s ease-out infinite}
-.ripple:nth-child(2){animation-delay:2s} .ripple:nth-child(3){animation-delay:4s}
-@keyframes ripple{0%{transform:scale(.25); opacity:.55} 100%{transform:scale(1.7); opacity:0}}
+  transform-box:fill-box; transform-origin:center; animation:ripple 7s ease-out infinite}
+.ripple:nth-child(2){animation-delay:2.3s} .ripple:nth-child(3){animation-delay:4.6s}
+@keyframes ripple{0%{transform:scale(.25); opacity:.5} 100%{transform:scale(1.7); opacity:0}}
 @media (prefers-reduced-motion:reduce){.ripple{animation:none}}
 </style>
 </head>
 <body>
-<header>
-  <h1>Feliz Aniversário</h1>
-  <p>Que seu amor floresça como esta flor, e que eu esteja ao seu lado em cada pétala que se abrir<br>Eu te amo</p>
-</header>
-
-<div class="stage">
-<svg id="scene" viewBox="0 0 600 520" role="img" tabindex="0" aria-label="Uma flor-de-lótus rosa abrindo sobre a água">
-  <defs>
+<main>
+  <!-- Troque o título e o texto abaixo pelos seus -->
+  <header>
+    <h1>Feliz aniversário</h1>
+    <p class="msg">Que seu amor floresça como esta flor, e que eu esteja ao seu lado em cada pétala que se abrir.<span class="love">Eu te amo</span></p>
+  </header>
+  <div class="stage">
+<svg id="scene" viewBox="70 140 460 380" role="img" tabindex="0" aria-label="Uma flor-de-lótus rosa abrindo sobre a água">
+  <defs id="defs">
     <radialGradient id="halo"><stop offset="0" style="stop-color:var(--glow)" stop-opacity=".9"/><stop offset="1" style="stop-color:var(--glow)" stop-opacity="0"/></radialGradient>
-    <linearGradient id="g0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd9e8"/><stop offset=".55" stop-color="#f06aa0"/><stop offset="1" stop-color="#a3124f"/></linearGradient>
-    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe3ef"/><stop offset=".55" stop-color="#f27aae"/><stop offset="1" stop-color="#b8185a"/></linearGradient>
-    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0f6"/><stop offset=".5" stop-color="#f78fbb"/><stop offset="1" stop-color="#d02a73"/></linearGradient>
-    <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff7f0"/><stop offset=".45" stop-color="#ffb3cf"/><stop offset="1" stop-color="#e8528f"/></linearGradient>
+    <radialGradient id="pod"><stop offset="0" stop-color="#eadb7a"/><stop offset="1" stop-color="#b8962b"/></radialGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--water)" stop-opacity="0"/><stop offset="1" style="stop-color:var(--water)" stop-opacity="1"/></linearGradient>
   </defs>
-
   <rect x="-3000" y="432" width="6600" height="90" style="fill:var(--water)"/>
+  <use href="#flower" transform="matrix(1 0 0 -.4 0 610.4)" opacity=".3"/>
+  <rect x="-3000" y="436" width="6600" height="86" fill="url(#fade)"/>
   <g>
-    <ellipse class="ripple" cx="300" cy="446" rx="170" ry="16"/>
-    <ellipse class="ripple" cx="300" cy="446" rx="170" ry="16"/>
-    <ellipse class="ripple" cx="300" cy="446" rx="170" ry="16"/>
+    <ellipse class="ripple" cx="300" cy="446" rx="150" ry="14"/>
+    <ellipse class="ripple" cx="300" cy="446" rx="150" ry="14"/>
+    <ellipse class="ripple" cx="300" cy="446" rx="150" ry="14"/>
   </g>
-  <ellipse cx="110" cy="468" rx="78" ry="13" style="fill:var(--pad)"/>
-  <ellipse cx="505" cy="462" rx="62" ry="10" style="fill:var(--pad)"/>
-  <ellipse cx="300" cy="438" rx="120" ry="12" style="fill:var(--pad)"/>
-
-  <circle id="glow" cx="300" cy="350" r="120" fill="url(#halo)" opacity="0"/>
+  <ellipse cx="108" cy="470" rx="72" ry="12" style="fill:var(--pad)"/>
+  <ellipse cx="508" cy="463" rx="58" ry="10" style="fill:var(--pad)"/>
+  <ellipse cx="300" cy="438" rx="118" ry="12" style="fill:var(--pad)"/>
+  <circle id="glow" cx="300" cy="350" r="90" fill="url(#halo)" opacity="0"/>
   <g id="flower" transform="translate(300 436)"></g>
+  <g id="parts"></g>
 </svg>
-</div>
+  </div>
+</main>
 
 <footer>
+  
+  
+  
+  
   <div class="controls">
     <button id="toggle" type="button">Abrir a flor</button>
     <input id="slider" type="range" min="0" max="1000" value="0" aria-label="Quanto a flor está aberta">
@@ -89,86 +103,122 @@ button:focus-visible,input:focus-visible,svg:focus-visible{outline:3px solid var
 
 <script>
 (function(){
-  var NS="http://www.w3.org/2000/svg", PATH="M0 0C-34 -30 -46 -105 0 -175C46 -105 34 -30 0 0Z";
-  var layers=[
-    {n:9,max:88,len:1.00,w:1.00,delay:0.00,g:"g0"},
-    {n:8,max:66,len:0.92,w:0.95,delay:0.12,g:"g1"},
-    {n:7,max:44,len:0.82,w:0.92,delay:0.24,g:"g2"},
-    {n:5,max:22,len:0.68,w:0.90,delay:0.36,g:"g3"}
-  ];
-  var flower=document.getElementById("flower"), glow=document.getElementById("glow");
-  var btn=document.getElementById("toggle"), slider=document.getElementById("slider");
-  var petals=[], stamens=[];
-  function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);parent.appendChild(e);return e}
+  var DUR=12000; /* duração da abertura em ms: maior = mais devagar */
+  var NS="http://www.w3.org/2000/svg";
+  var calm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(calm)DUR=1200;
+  function $(id){return document.getElementById(id)}
+  var defs=$("defs"), flower=$("flower"), glow=$("glow"), parts=$("parts"),
+      btn=$("toggle"), slider=$("slider"), scene=$("scene");
+  function el(tag,a,p){var e=document.createElementNS(NS,tag);for(var k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
   function clamp(x){return x<0?0:x>1?1:x}
-  function ease(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}
+  function ease(x){return x*x*x*(x*(x*6-15)+10)}
 
-  function buildLayer(L,idx){
-    var g=el("g",{},flower);
-    for(var i=0;i<L.n;i++){
-      var p=el("g",{},g);
-      el("path",{d:PATH,fill:"url(#"+L.g+")",stroke:"rgba(255,255,255,.4)","stroke-width":".8"},p);
-      var base=-L.max+2*L.max*(i/(L.n-1));
-      var jitter=((i*37+idx*11)%7-3)*0.9;
-      petals.push({el:p,L:L,base:base,jit:jitter,extra:Math.abs(i-(L.n-1)/2)*0.008});
+  var BODY="M0 0C-30 -18 -52 -70 -40 -112C-34 -142 -14 -164 0 -178C14 -164 34 -142 40 -112C52 -70 30 -18 0 0Z";
+  var HI="M0 -16C-17 -42 -26 -92 -13 -132C-8 -148 -3 -160 0 -168C3 -160 8 -148 13 -132C26 -92 17 -42 0 -16Z";
+  var VEIN="M0 -6C1 -60 -1 -120 0 -166M0 -10C-12 -40 -22 -82 -18 -124M0 -10C12 -40 22 -82 18 -124M0 -12C-24 -38 -38 -72 -32 -110M0 -12C24 -38 38 -72 32 -110";
+  var TONES=[
+    ["#d93a7b","#ee79a8","#fbc9dc","#fff1cf"],
+    ["#e24c8a","#f18db5","#fcd5e4","#fff3d6"],
+    ["#ea6a9c","#f6a3c4","#fde0ec","#fff5dc"],
+    ["#f287b0","#f9bad2","#fee9f2","#fff7e2"],
+    ["#f9a3c3","#fcd0e0","#fff1f6","#fff9e8"]
+  ];
+  var LAYERS=[
+    {n:8,max:94,len:1.00,w:1.00,d:0.00},
+    {n:8,max:76,len:0.94,w:0.96,d:0.10},
+    {n:7,max:56,len:0.86,w:0.92,d:0.20},
+    {n:6,max:38,len:0.76,w:0.90,d:0.30},
+    {n:5,max:20,len:0.64,w:0.86,d:0.40}
+  ];
+  var i,k,petals=[];
+  TONES.forEach(function(c,n){
+    var g=el("linearGradient",{id:"g"+n,x1:0,y1:0,x2:0,y2:1},defs);
+    [0,.4,.8,1].forEach(function(o,j){el("stop",{offset:o,"stop-color":c[j]},g)});
+  });
+  for(i=0;i<LAYERS.length;i++){
+    var L=LAYERS[i], lg=el("g",{},flower);
+    for(k=0;k<L.n;k++){
+      var pg=el("g",{},lg);
+      el("path",{d:BODY,fill:"url(#g"+i+")",stroke:"rgba(176,24,96,.38)","stroke-width":".8","stroke-linejoin":"round"},pg);
+      el("path",{d:HI,fill:"#fff",opacity:".16"},pg);
+      el("path",{d:VEIN,fill:"none",stroke:"rgba(160,20,80,.26)","stroke-width":".7","stroke-linecap":"round"},pg);
+      petals.push({g:pg,L:L,b:-L.max+2*L.max*k/(L.n-1),x:Math.abs(k-(L.n-1)/2)*.008,ph:i*1.7+k*.9});
     }
   }
-  buildLayer(layers[0],0); buildLayer(layers[1],1);
 
-  var sg=el("g",{},flower);
-  for(var s=0;s<15;s++){
-    var a=(-42+84*s/14)*Math.PI/180, len=44+(s%3)*9;
-    var ln=el("line",{x1:0,y1:-14,x2:0,y2:-14,stroke:"#f4c542","stroke-width":2.2,"stroke-linecap":"round"},sg);
-    var dot=el("circle",{r:3.4,fill:"#ffd966",cx:0,cy:-14},sg);
-    stamens.push({ln:ln,dot:dot,a:a,len:len});
+  /* miolo dourado */
+  var heart=el("g",{transform:"translate(0 -10)",opacity:0},flower), st=[];
+  for(i=0;i<22;i++){
+    var len=40+((i*7)%5)*5, sg=el("g",{},heart);
+    el("line",{x1:0,y1:0,x2:0,y2:-len,stroke:"#f3cd6a","stroke-width":1.6,"stroke-linecap":"round"},sg);
+    el("ellipse",{cx:0,cy:-len,rx:2.2,ry:3.4,fill:"#f2a93b"},sg);
+    st.push({g:sg,a:-58+116*i/21});
   }
-  var pod=el("ellipse",{cx:0,cy:-20,rx:14,ry:9,fill:"#e8b730"},sg);
-  buildLayer(layers[2],2); buildLayer(layers[3],3);
+  el("ellipse",{cx:0,cy:0,rx:16,ry:10,fill:"url(#pod)"},heart);
+  [[-8,-2],[0,-4],[8,-2],[-4,2],[4,2],[0,0]].forEach(function(d){el("circle",{cx:d[0],cy:d[1],r:1.3,fill:"#7a5d10",opacity:".55"},heart)});
 
-  function update(t){
-    petals.forEach(function(p){
-      var e=ease(clamp((t-p.L.delay-p.extra)/0.6));
-      var ang=p.base*(0.1+0.9*e)+p.jit*e;
-      var sx=p.L.w*(0.5+0.5*e), sy=p.L.len*(0.86+0.14*e);
-      p.el.setAttribute("transform","rotate("+ang.toFixed(2)+") scale("+sx.toFixed(3)+" "+sy.toFixed(3)+")");
-    });
-    var se=ease(clamp((t-0.3)/0.6));
-    stamens.forEach(function(s){
-      var x=Math.sin(s.a)*s.len*se, y=-14-Math.cos(s.a)*s.len*se;
-      s.ln.setAttribute("x2",x.toFixed(1)); s.ln.setAttribute("y2",y.toFixed(1));
-      s.dot.setAttribute("cx",x.toFixed(1)); s.dot.setAttribute("cy",y.toFixed(1));
-    });
-    pod.setAttribute("opacity",se);
-    var ge=ease(t);
-    glow.setAttribute("r",(90+150*ge).toFixed(0));
-    glow.setAttribute("opacity",(0.12+0.5*ge).toFixed(2));
+  /* vaga-lumes / pólen */
+  var pts=[];
+  for(i=0;i<18;i++){
+    pts.push({c:el("circle",{r:(1.2+(i%3)*.7).toFixed(1),fill:i%2?"#ffe9a8":"#ffc4da",opacity:0},parts),
+      x:((i*53)%97)/97*180-90, s:.00006+((i*29)%11)*.000007, o:((i*37)%100)/100, w:.8+(i%4)*.35});
   }
 
-  var t=0, target=1, raf=0, last=0, DUR=14000;
-  function label(){btn.textContent=target?"Fechar a flor":"Abrir a flor"}
-  function step(now){
-    var dt=now-last; last=now;
-    t+=(target?1:-1)*dt/DUR; t=clamp(t);
-    update(t); slider.value=Math.round(t*1000);
-    if((target&&t<1)||(!target&&t>0)) raf=requestAnimationFrame(step); else raf=0;
+  var t=0,target=0,running=false,last=0;
+
+  function update(now){
+    var sw=calm?0:1, j;
+    for(j=0;j<petals.length;j++){
+      var p=petals[j], e=ease(clamp((t-p.L.d-p.x)/.55));
+      var a=p.b*(.08+.92*e)+Math.sin(now/1600+p.ph)*1.3*e*sw;
+      var sk=-Math.sign(p.b)*Math.abs(p.b)*.11*e;
+      var sx=p.L.w*(.5+.5*e), sy=p.L.len*(.86+.14*e);
+      p.g.setAttribute("transform","rotate("+a.toFixed(2)+") skewX("+sk.toFixed(2)+") scale("+sx.toFixed(3)+" "+sy.toFixed(3)+")");
+    }
+    var se=ease(clamp((t-.6)/.4));
+    heart.setAttribute("opacity",se.toFixed(3));
+    heart.setAttribute("transform","translate(0 -10) scale("+(.5+.5*se).toFixed(3)+")");
+    for(j=0;j<st.length;j++){
+      st[j].g.setAttribute("transform","rotate("+(st[j].a+Math.sin(now/1100+j)*1.5*sw).toFixed(1)+") scale("+se.toFixed(3)+")");
+    }
+    var ge=ease(t), pulse=1+.05*Math.sin(now/1300)*ge*sw;
+    glow.setAttribute("r",((90+140*ge)*pulse).toFixed(0));
+    glow.setAttribute("opacity",(.1+.5*ge).toFixed(2));
+    var po=calm?0:ease(clamp((t-.85)/.15));
+    for(j=0;j<pts.length;j++){
+      var q=pts[j], u=(now*q.s+q.o)%1;
+      q.c.setAttribute("cx",(300+q.x+Math.sin(now/800*q.w+q.o*9)*16*u).toFixed(1));
+      q.c.setAttribute("cy",(385-u*205).toFixed(1));
+      q.c.setAttribute("opacity",(po*Math.sin(Math.PI*u)*.9).toFixed(2));
+    }
+    
+    
   }
-  function go(to){
-    target=to; label(); cancelAnimationFrame(raf);
-    last=performance.now(); raf=requestAnimationFrame(step);
+
+  function label(){btn.textContent=target>=.5?"Fechar a flor":"Abrir a flor"}
+  function frame(now){
+    var dt=Math.min(Math.max(now-last,0),64); last=now;
+    if(t!==target){
+      var dir=target>t?1:-1; t+=dir*dt/DUR;
+      if(dir>0?t>=target:t<=target)t=target;
+    }
+    update(now); slider.value=Math.round(t*1000);
+    if(t===target&&(calm||t===0)){running=false;return}
+    requestAnimationFrame(frame);
   }
-  function toggle(){go(target?0:1)}
+  function kick(){if(!running){running=true;last=performance.now();requestAnimationFrame(frame)}}
+  function go(v){target=v;label();kick()}
+  function toggle(){go(target>=.5?0:1)}
 
   btn.addEventListener("click",toggle);
-  document.getElementById("scene").addEventListener("click",toggle);
-  document.getElementById("scene").addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle()}});
-  slider.addEventListener("input",function(){
-    cancelAnimationFrame(raf); raf=0;
-    t=slider.value/1000; target=t>0.5?1:0; label(); update(t);
-  });
+  scene.addEventListener("click",toggle);
+  scene.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle()}});
+  slider.addEventListener("input",function(){t=target=slider.value/1000;label();kick()});
 
-  update(0);
-  if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){t=1;target=1;update(1);slider.value=1000;label()}
-  else{target=0;label();setTimeout(function(){go(1)},700)}
+  if(calm){t=target=1}
+  update(performance.now()); slider.value=Math.round(t*1000); label();
+  if(!calm)setTimeout(function(){go(1)},900);
 })();
 </script>
 </body>
